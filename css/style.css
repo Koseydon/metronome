@@ -1,0 +1,153 @@
+@font-face {
+  font-family: Digital;
+  src: url(/fonts/digital-mono-italic.ttf);
+}
+
+html {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  
+}
+
+button {
+  background-color: #ddd;
+  border: none;
+  transition: background-color .15s ease-in-out; 
+}
+
+button:hover {
+  background-color: #aaa;
+}
+
+.container {
+  margin: auto;
+  width: 400px;
+}
+
+h2 {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#bpm {
+  display: none;
+  width: 100px;
+  margin: 10px auto;
+}
+
+#bpmRange {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+}
+
+#tapTempo {
+  display: block;
+  width: 200px;
+  height: 30px;
+  margin: 10px auto;
+}
+
+#startStop {
+  display: block;
+  width: 200px;
+  height: 30px;
+  margin: 10px auto;
+}
+
+#bpmControls {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+}
+
+#bpmControls button {
+  width: 30px;
+  height: 30px;
+  margin: 2px 4px;
+  text-align: center;
+}
+
+#bpmDiv {
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  font-family: Digital, monospace;
+  font-size: 36px;
+}
+
+#tempoName {
+  /* height: 30px; */
+  width: 200px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: italic;
+}
+
+#animation {
+  position: relative;
+  width: 200px;
+  height: 30px;
+  margin: auto;
+  /* border: 1px solid #aaa;
+  background-color: #eee; */
+}
+
+#animationDisc {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #000;
+  /* border: 2px solid #000; */
+  box-sizing: border-box;
+}
+
+#animationLine {
+  height: 50%;
+  border-bottom: 1px solid #000;
+}
+
+@keyframes disc {
+  0% {
+    left: 0;
+    /* transform: translate(0px, 0px); */
+  }
+  50% {
+    left: 170px;
+    /* transform: translate(170px, 0px); */
+  }
+  100% {
+    left: 0;
+    /* transform: translate(0px, 0px); */
+  }
+}
+
+.animating {
+  /* animation: disc 2s linear infinite forwards; */
+  animation-name: disc;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#volume {
+  display: flex;
+  justify-content: stretch;
+  width: 200px;
+  margin: auto;
+}
+
+#volumeFontDiv {
+  width: 36px;
+  font-size: 20px;  
+}
+
+#volume input[type=range] {
+  width: 164px;
+}
