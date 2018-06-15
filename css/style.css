@@ -70,13 +70,13 @@ button:hover {
 #bpmControls {
   display: grid;
   grid-column-gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 52px 1fr 1fr;
 }
 #bpmControls button {
   text-align: center;
 }
 #bpmDiv {  
-  text-align: center;  
+  text-align: right;  
   font-family: Digital, monospace;
   font-size: 36px;
 }
