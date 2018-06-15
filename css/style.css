@@ -3,93 +3,123 @@
   src: url(/fonts/digital-mono-italic.ttf);
 }
 
-html {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
   box-sizing: border-box;
 }
 
 body {
+  font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;  
 }
 
+
 button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
   background-color: #ddd;
   border: none;
   transition: background-color .15s ease-in-out; 
 }
-
 button:hover {
   background-color: #aaa;
 }
 
-.container {
-  margin: auto;
-  width: 400px;
+#navigation {
+  background-color: #aaa;
+  color: #fff;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+#appName {
+  font-size: 1.2rem;
+
 }
 
-h2 {
-  margin: 20px 0;
-  text-align: center;
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-width: 300px;
+}
+
+.row {
+  margin-bottom: 1rem;
 }
 
 #bpm {
   display: none;
-  width: 100px;
-  margin: 10px auto;
 }
 
+#bpmRangeDiv {
+  width: 100%;
+}
 #bpmRange {
-  display: block;
-  width: 200px;
-  margin: 10px auto;
+  width: 100%;
+  margin: 0;
 }
 
+#startStopDiv {
+  width: 100%;
+}
 #startStop {
-  display: block;
-  width: 200px;
+  display: inline-block;
+  width: 100%;
   height: 30px;
-  margin: 10px auto;
 }
 
 #bpmControls {
-  display: flex;
-  justify-content: center;
-  margin: 10px auto;
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 #bpmControls button {
-  width: 30px;
-  height: 30px;
-  margin: 2px 4px;
   text-align: center;
 }
-#bpmDiv {
-  height: 30px;
-  width: 60px;
-  text-align: center;
+#bpmDiv {  
+  text-align: center;  
   font-family: Digital, monospace;
   font-size: 36px;
 }
 
 #tempoName {
-  /* height: 30px; */
-  width: 200px;
-  margin: auto;
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-style: italic;
 }
 
-#volume {
-  display: flex;
-  justify-content: stretch;
-  width: 200px;
-  margin: auto;
-}
 #volumeFontDiv {
-  width: 36px;
-  font-size: 20px;  
+  display: inline-block;
+  font-size: 20px;
+  width: 40px;
+  height: 30px;
+}
+#volumeRangeDiv {
+  display: inline-block;
+  width: calc(100% - 45px);
+  height: 30px;
 }
 #volume input[type=range] {
-  width: 164px;
+  position: relative;
+  top: 3px;
+  margin: 0;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .container {
+    width: 600px;
+    margin: 0 auto;
+  }
+} 
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 992px) {
+
+}
+
+@media only screen and (min-width: 1200px) {
+  
 }
