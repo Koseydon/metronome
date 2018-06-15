@@ -45,13 +45,6 @@ h2 {
   margin: 10px auto;
 }
 
-#tapTempo {
-  display: block;
-  width: 200px;
-  height: 30px;
-  margin: 10px auto;
-}
-
 #startStop {
   display: block;
   width: 200px;
@@ -64,14 +57,12 @@ h2 {
   justify-content: center;
   margin: 10px auto;
 }
-
 #bpmControls button {
   width: 30px;
   height: 30px;
   margin: 2px 4px;
   text-align: center;
 }
-
 #bpmDiv {
   height: 30px;
   width: 60px;
@@ -89,65 +80,16 @@ h2 {
   font-style: italic;
 }
 
-#animation {
-  position: relative;
-  width: 200px;
-  height: 30px;
-  margin: auto;
-  /* border: 1px solid #aaa;
-  background-color: #eee; */
-}
-
-#animationDisc {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  background-color: #000;
-  /* border: 2px solid #000; */
-  box-sizing: border-box;
-}
-
-#animationLine {
-  height: 50%;
-  border-bottom: 1px solid #000;
-}
-
-@keyframes disc {
-  0% {
-    left: 0;
-    /* transform: translate(0px, 0px); */
-  }
-  50% {
-    left: 170px;
-    /* transform: translate(170px, 0px); */
-  }
-  100% {
-    left: 0;
-    /* transform: translate(0px, 0px); */
-  }
-}
-
-.animating {
-  /* animation: disc 2s linear infinite forwards; */
-  animation-name: disc;
-  animation-duration: 2s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
 #volume {
   display: flex;
   justify-content: stretch;
   width: 200px;
   margin: auto;
 }
-
 #volumeFontDiv {
   width: 36px;
   font-size: 20px;  
 }
-
 #volume input[type=range] {
   width: 164px;
 }
