@@ -1,3 +1,10 @@
+:root {
+  --color1: #003B46;
+  --color2: #07575B;
+  --color3: #66A5AD;
+  --color4: #C4DFE6;
+}
+
 @font-face {
   font-family: Digital;
   src: url(/fonts/digital-mono-italic.ttf);
@@ -10,30 +17,35 @@
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
-  padding: 0;  
+  padding: 0;
+  background-color: var(--color1);
+  color: var(--color4);
 }
-
 
 button {
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  background-color: #ddd;
+  background-color: var(--color3);
+  color: var(--color2);
   border: none;
+  padding: 0;
+  height: 36px;
   transition: background-color .15s ease-in-out; 
 }
 button:hover {
-  background-color: #aaa;
+  cursor: pointer;
+  background-color: var(--color4);
+  color: var(--color1);
 }
 
 #navigation {
-  background-color: #aaa;
-  color: #fff;
+  background-color: var(--color2);
+  color: var(--color4);
   padding: 1rem 0;
   margin-bottom: 1rem;
 }
 #appName {
   font-size: 1.2rem;
-
 }
 
 .container {
@@ -64,7 +76,7 @@ button:hover {
 #startStop {
   display: inline-block;
   width: 100%;
-  height: 30px;
+  height: 36px;
 }
 
 #bpmControls {
