@@ -3,15 +3,6 @@ const metronome = {
   clickAudio: new Audio('sounds/beat.wav'),
   timer: null,
   isPlaying: false,
-  tapTempo: {
-    click1Timestamp: 0, 
-    click2Timestamp: 0, 
-    bpm: 0,
-    clickCount: 0
-  },
-  animation: {
-
-  },
   click: function() {
     this.clickAudio.play()
   },
@@ -55,7 +46,6 @@ const view = {
   plusFive: document.getElementById('plusFive'),
   volumeRange: document.getElementById('volumeRange'),
   volumeIcon: document.getElementById('volumeIcon'),  
-  tapTempo: document.getElementById('tapTempo'),
   tempoName: document.getElementById('tempoName'),
 
   setUpEventListeners: function() {    
@@ -66,7 +56,6 @@ const view = {
     this.plusOne.addEventListener('click', handlers.increaseTempo)
     this.plusFive.addEventListener('click', handlers.increaseTempoFive)
     this.volumeRange.addEventListener('input', handlers.changeVolume.bind(this.volumeRange))
-    this.tapTempo.addEventListener('click', handlers.tapTempo)
   }
 }
 
@@ -147,30 +136,6 @@ const handlers = {
       view.volumeIcon.classList.remove('fa-volume-down')
       view.volumeIcon.classList.add('fa-volume-off')        
     }
-  },
-
-  tapTempo: function() {
-    metronome.tapTempo.clickCount++
-
-    if (metronome.tapTempo.clickCount === 1) {
-      metronome.tapTempo.click1Timestamp = Date.now();
-    }
-
-    if (metronome.tapTempo.clickCount === 2) {
-      metronome.tapTempo.click2Timestamp = Date.now()
-      metronome.tapTempo.bpm = 60000 / (metronome.tapTempo.click2Timestamp - metronome.tapTempo.click1Timestamp)
-
-      if (metronome.tapTempo.bpm < 20) metronome.tapTempo.bpm = 20
-      if (metronome.tapTempo.bpm > 300) metronome.tapTempo.bpm = 300
-
-      metronome.bpm = Math.floor(metronome.tapTempo.bpm)
-      
-      bpmRange.value = metronome.bpm
-      bpmDiv.textContent = metronome.bpm
-      metronome.update()
-
-      metronome.tapTempo.clickCount = 0
-    }      
   }
 }
 
