@@ -28,6 +28,8 @@ button {
   background-color: var(--color3);
   color: var(--color2);
   border: none;
+  border-radius: 2px;
+  outline: none;
   padding: 0;
   height: 36px;
   transition: background-color .15s ease-in-out; 
@@ -37,6 +39,33 @@ button:hover {
   background-color: var(--color4);
   color: var(--color1);
 }
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 0;
+  height: 8px;
+  background-color: var(--color2);
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25) inset;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: background-color .15s ease-in-out; 
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb:hover,
+input[type=range]::-webkit-slider-thumb:active {
+  background-color: var(--color4);
+}
+
 
 #navigation {
   background-color: var(--color2);
@@ -100,6 +129,7 @@ button:hover {
 }
 
 #volumeFontDiv {
+  padding-left: 4px; 
   display: inline-block;
   font-size: 20px;
   width: 40px;
@@ -112,7 +142,7 @@ button:hover {
 }
 #volume input[type=range] {
   position: relative;
-  top: 3px;
+  top: -4px;
   margin: 0;
   width: 100%;
 }
