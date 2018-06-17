@@ -157,12 +157,15 @@ input[type=range]::-webkit-slider-thumb:active {
   margin: 0;
   width: 100%;
 }
-
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 480px) { 
   .container {
     width: 480px;
     margin: 0 auto;
   }
+}
+
+@media only screen and (min-width: 600px) {
+  
 } 
 
 @media only screen and (min-width: 768px) {
