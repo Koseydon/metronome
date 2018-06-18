@@ -1,8 +1,29 @@
 const metronome = {
   bpm: 60,
+  volume: 100,
   clickAudio: new Audio('sounds/beat.wav'),
   timer: null,
   isPlaying: false,
+  initialize: function() {
+    if (localStorage.simpleMetronomeTempo) {
+      this.bpm = localStorage.simpleMetronomeTempo
+      view.bpmDiv.textContent = this.bpm
+      view.bpmRange.value = this.bpm
+      view.tempoName.textContent = tempoMarkings.name(this.bpm)
+    } else {
+      view.bpmDiv.textContent = this.bpm
+      view.bpmRange.value = this.bpm
+      view.tempoName.textContent = tempoMarkings.name(this.bpm)
+    }
+    if (localStorage.simpleMetronomeVolume) { 
+      this.volume = localStorage.simpleMetronomeVolume
+      this.clickAudio.volume = this.volume / 100
+      view.volumeRange.value = localStorage.simpleMetronomeVolume
+    } else {
+      this.clickAudio.volume = this.volume / 100
+      view.volumeRange.value = this.volume
+    }
+  },
   click: function() {
     this.clickAudio.play()
   },
@@ -74,14 +95,17 @@ const handlers = {
   
   changeTempo: function() {
     metronome.bpm = parseInt(this.value)
-    bpmDiv.innerText = metronome.bpm
-    // ???
-    tempoName.innerText = tempoMarkings.name(metronome.bpm)
+    localStorage.simpleMetronomeTempo = metronome.bpm
+    
+    view.bpmDiv.innerText = metronome.bpm
+    view.tempoName.innerText = tempoMarkings.name(metronome.bpm)
     metronome.update()     
   },
 
   increaseTempo: function() {
     if (metronome.bpm < 300) metronome.bpm++
+    localStorage.simpleMetronomeTempo = metronome.bpm
+
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
     metronome.update()
@@ -89,6 +113,8 @@ const handlers = {
 
   decreaseTempo: function() {
     if (metronome.bpm > 20) metronome.bpm--
+    localStorage.simpleMetronomeTempo = metronome.bpm
+
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
     metronome.update()
@@ -99,7 +125,9 @@ const handlers = {
       metronome.bpm += 5
     } else if (metronome.bpm > 295) {
       metronome.bpm = 300
-    }      
+    }
+    localStorage.simpleMetronomeTempo = metronome.bpm
+
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
     metronome.update()
@@ -110,7 +138,9 @@ const handlers = {
       metronome.bpm -= 5
     } else if (metronome.bpm < 25) {
       metronome.bpm = 20
-    } 
+    }
+    localStorage.simpleMetronomeTempo = metronome.bpm
+
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
     metronome.update()
@@ -118,6 +148,8 @@ const handlers = {
 
   changeVolume: function() {
     metronome.clickAudio.volume = this.value / 100
+    localStorage.simpleMetronomeVolume = this.value
+    
     if (this.value > 50) {
       view.volumeIcon.classList.remove('fa-volume-down')
       view.volumeIcon.classList.remove('fa-volume-off')
@@ -136,4 +168,5 @@ const handlers = {
   }
 }
 
+metronome.initialize()
 view.setUpEventListeners()
