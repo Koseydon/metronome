@@ -6,7 +6,7 @@ const metronome = {
   isPlaying: false,
   initialize: function() {
     if (localStorage.simpleMetronomeTempo) {
-      this.bpm = localStorage.simpleMetronomeTempo
+      this.bpm = parseInt(localStorage.simpleMetronomeTempo)
       view.bpmDiv.textContent = this.bpm
       view.bpmRange.value = this.bpm
       view.tempoName.textContent = tempoMarkings.name(this.bpm)
@@ -16,7 +16,7 @@ const metronome = {
       view.tempoName.textContent = tempoMarkings.name(this.bpm)
     }
     if (localStorage.simpleMetronomeVolume) { 
-      this.volume = localStorage.simpleMetronomeVolume
+      this.volume = parseInt(localStorage.simpleMetronomeVolume)
       this.clickAudio.volume = this.volume / 100
       view.volumeRange.value = localStorage.simpleMetronomeVolume
     } else {
