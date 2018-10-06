@@ -7,14 +7,9 @@ const metronome = {
   initialize: function() {
     if (localStorage.simpleMetronomeTempo) {
       this.bpm = parseInt(localStorage.simpleMetronomeTempo)
-      view.bpmDiv.textContent = this.bpm
-      view.bpmRange.value = this.bpm
-      view.tempoName.textContent = tempoMarkings.name(this.bpm)
-    } else {
-      view.bpmDiv.textContent = this.bpm
-      view.bpmRange.value = this.bpm
-      view.tempoName.textContent = tempoMarkings.name(this.bpm)
     }
+    view.updateAllBpmRelated()
+    
     if (localStorage.simpleMetronomeVolume) { 
       this.volume = parseInt(localStorage.simpleMetronomeVolume)
       this.clickAudio.volume = this.volume / 100
@@ -64,6 +59,29 @@ const view = {
     this.plusOne.addEventListener('click', handlers.increaseTempo)
     this.plusFive.addEventListener('click', handlers.increaseTempoFive)
     this.volumeRange.addEventListener('input', handlers.changeVolume.bind(this.volumeRange))
+  },
+
+  updateStartStopButton: function() {
+    this.startStopButtonIcon.classList.toggle('fa-play')
+    this.startStopButtonIcon.classList.toggle('fa-stop')
+  },
+
+  updateBpmDiv: function() {
+    this.bpmDiv.innerText = metronome.bpm
+  },
+
+  updateTempoName: function() {
+    this.tempoName.innerText = tempoMarkings.name(metronome.bpm)
+  },
+
+  updateBpmRange: function() {
+    this.bpmRange.value = metronome.bpm
+  },
+
+  updateAllBpmRelated: function() {
+    this.updateBpmDiv()
+    this.updateTempoName()
+    this.updateBpmRange()
   }
 }
 
@@ -71,37 +89,29 @@ const handlers = {
   toggleStart: function() {
     if (metronome.isPlaying) {
       metronome.stop()
-      view.startStopButtonIcon.classList.remove('fa-stop')
-      view.startStopButtonIcon.classList.add('fa-play')
     } else {
       metronome.start()
-      view.startStopButtonIcon.classList.remove('fa-play')
-      view.startStopButtonIcon.classList.add('fa-stop')
     }
+    view.updateStartStopButton()
   },
   
   changeTempo: function() {
     metronome.bpm = parseInt(this.value)
     localStorage.simpleMetronomeTempo = metronome.bpm
-    
-    view.bpmDiv.innerText = metronome.bpm
-    view.tempoName.innerText = tempoMarkings.name(metronome.bpm)
+    view.updateBpmDiv()
+    view.updateTempoName()
   },
 
   increaseTempo: function() {
     if (metronome.bpm < 300) metronome.bpm++
     localStorage.simpleMetronomeTempo = metronome.bpm
-
-    view.bpmDiv.innerText = metronome.bpm
-    view.bpmRange.value = metronome.bpm
+    view.updateAllBpmRelated()
   },
 
   decreaseTempo: function() {
     if (metronome.bpm > 20) metronome.bpm--
     localStorage.simpleMetronomeTempo = metronome.bpm
-
-    view.bpmDiv.innerText = metronome.bpm
-    view.bpmRange.value = metronome.bpm
+    view.updateAllBpmRelated()
   },
 
   increaseTempoFive: function() {
@@ -111,9 +121,7 @@ const handlers = {
       metronome.bpm = 300
     }
     localStorage.simpleMetronomeTempo = metronome.bpm
-
-    view.bpmDiv.innerText = metronome.bpm
-    view.bpmRange.value = metronome.bpm
+    view.updateAllBpmRelated()
   },
 
   decreaseTempoFive: function() {
@@ -123,9 +131,7 @@ const handlers = {
       metronome.bpm = 20
     }
     localStorage.simpleMetronomeTempo = metronome.bpm
-
-    view.bpmDiv.innerText = metronome.bpm
-    view.bpmRange.value = metronome.bpm
+    view.updateAllBpmRelated()
   },
 
   changeVolume: function() {
