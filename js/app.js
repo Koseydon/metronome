@@ -24,30 +24,17 @@ const metronome = {
       view.volumeRange.value = this.volume
     }
   },
-  click: function() {
-    this.clickAudio.play()
-  },
-  repeatClick: function() {
-    this.isPlaying = true
-    let t1, t2 = 0    
-    this.timer = setInterval(() => {
-      this.click()
-      if (t1) t2 = t1
-      t1 = performance.now()      
-      // t1 = Date.now()      
-      if (t2) console.log(t1 - t2)
-    }, 60000 / this.bpm)
-  },
   start: function() {
+    let t1 = performance.now()
+    this.clickAudio.play()
     this.isPlaying = true
-    this.click()
-    this.repeatClick()    
-  },
-  update: function() {
-    if (this.isPlaying) {
-      this.stop()
-      this.repeatClick()
-    }
+
+    let interval = 60000 / this.bpm
+
+    this.timer = setTimeout(() => {
+      console.log(performance.now() - t1)
+      this.start()
+    }, interval)
   },
   stop: function() {
     clearInterval(this.timer)
@@ -99,7 +86,6 @@ const handlers = {
     
     view.bpmDiv.innerText = metronome.bpm
     view.tempoName.innerText = tempoMarkings.name(metronome.bpm)
-    metronome.update()     
   },
 
   increaseTempo: function() {
@@ -108,7 +94,6 @@ const handlers = {
 
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
-    metronome.update()
   },
 
   decreaseTempo: function() {
@@ -117,7 +102,6 @@ const handlers = {
 
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
-    metronome.update()
   },
 
   increaseTempoFive: function() {
@@ -130,7 +114,6 @@ const handlers = {
 
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
-    metronome.update()
   },
 
   decreaseTempoFive: function() {
@@ -143,7 +126,6 @@ const handlers = {
 
     view.bpmDiv.innerText = metronome.bpm
     view.bpmRange.value = metronome.bpm
-    metronome.update()
   },
 
   changeVolume: function() {
