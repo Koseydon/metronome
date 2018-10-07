@@ -1,6 +1,5 @@
 const metronome = {
   bpm: 60,
-  volume: 100,
   clickAudio: new Audio('sounds/beat.wav'),
   timer: null,
   isPlaying: false,
@@ -11,12 +10,11 @@ const metronome = {
     view.updateAllBpmRelated()
     
     if (localStorage.simpleMetronomeVolume) { 
-      this.volume = parseInt(localStorage.simpleMetronomeVolume)
-      this.clickAudio.volume = this.volume / 100
+      this.clickAudio.volume = parseInt(localStorage.simpleMetronomeVolume) / 100
       view.volumeRange.value = localStorage.simpleMetronomeVolume
     } else {
-      this.clickAudio.volume = this.volume / 100
-      view.volumeRange.value = this.volume
+      this.clickAudio.volume = 1
+      view.volumeRange.value = 100
     }
     view.updateVolumeIcon()
   },
