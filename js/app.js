@@ -18,6 +18,7 @@ const metronome = {
       this.clickAudio.volume = this.volume / 100
       view.volumeRange.value = this.volume
     }
+    view.updateVolumeIcon()
   },
   start: function() {
     let t1 = performance.now()
@@ -82,6 +83,16 @@ const view = {
     this.updateBpmDiv()
     this.updateTempoName()
     this.updateBpmRange()
+  },
+
+  updateVolumeIcon: function() {
+    if (this.volumeRange.value > 50) {
+      view.volumeIcon.className = 'fas fa-volume-up'
+    } else if (this.volumeRange.value < 51 && this.volumeRange.value > 0) {
+      view.volumeIcon.className = 'fas fa-volume-down'
+    } else if (this.volumeRange.value == 0) {
+      view.volumeIcon.className = 'fas fa-volume-off'
+    }
   }
 }
 
@@ -137,22 +148,7 @@ const handlers = {
   changeVolume: function() {
     metronome.clickAudio.volume = this.value / 100
     localStorage.simpleMetronomeVolume = this.value
-    
-    if (this.value > 50) {
-      view.volumeIcon.classList.remove('fa-volume-down')
-      view.volumeIcon.classList.remove('fa-volume-off')
-      view.volumeIcon.classList.add('fa-volume-up')        
-    }
-    if (this.value < 51 && this.value > 0) {
-      view.volumeIcon.classList.remove('fa-volume-up')
-      view.volumeIcon.classList.remove('fa-volume-off')
-      view.volumeIcon.classList.add('fa-volume-down')        
-    }
-    if (this.value == 0) {
-      view.volumeIcon.classList.remove('fa-volume-up')
-      view.volumeIcon.classList.remove('fa-volume-down')
-      view.volumeIcon.classList.add('fa-volume-off')        
-    }
+    view.updateVolumeIcon()    
   }
 }
 
